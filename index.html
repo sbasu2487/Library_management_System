@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside>
+        <h2>Library System</h2>
+        <ul class="nav-links">
+            <li class="active" onclick="switchTab('dashboard', this)">1. Dashboard[cite: 1]</li>
+            <li onclick="switchTab('add-book', this)">2. Add New Book[cite: 1]</li>
+            <li onclick="switchTab('view-books', this)">3. View All Books[cite: 1]</li>
+            <li onclick="switchTab('search-books', this)">4. Search Books[cite: 1]</li>
+            <li onclick="switchTab('issue-book', this)">5. Issue Book[cite: 1]</li>
+            <li onclick="switchTab('return-book', this)">6. Return Book[cite: 1]</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- 1. Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <header><h1>Dashboard Overview</h1></header>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Total Books[cite: 1]</h3>
+                    <p id="stat-total">0</p>
+                </div>
+                <div class="card card-success">
+                    <h3>Available Books[cite: 1]</h3>
+                    <p id="stat-available">0</p>
+                </div>
+                <div class="card card-danger">
+                    <h3>Issued Books[cite: 1]</h3>
+                    <p id="stat-issued">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Add New Books Section -->
+        <section id="add-book" class="section">
+            <header><h1>Add New Book[cite: 1]</h1></header>
+            <form id="addBookForm" onsubmit="addBook(event)">
+                <div class="form-group">
+                    <label>Book ID[cite: 1]</label>
+                    <input type="text" id="bookId" required placeholder="e.g. B001">
+                </div>
+                <div class="form-group">
+                    <label>Title[cite: 1]</label>
+                    <input type="text" id="bookTitle" required placeholder="Book Title">
+                </div>
+                <div class="form-group">
+                    <label>Author[cite: 1]</label>
+                    <input type="text" id="bookAuthor" required placeholder="Author Name">
+                </div>
+                <div class="form-group">
+                    <label>Category[cite: 1]</label>
+                    <input type="text" id="bookCategory" required placeholder="Category/Genre">
+                </div>
+                <div class="form-group">
+                    <label>Quantity[cite: 1]</label>
+                    <input type="number" id="bookQuantity" min="1" required placeholder="Total Quantity">
+                </div>
+                <button type="submit" class="btn-success">Add Book</button>
+            </form>
+        </section>
+
+        <!-- 3. View All Books Section -->
+        <section id="view-books" class="section">
+            <header><h1>Library Inventory</h1></header>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book ID[cite: 1]</th>
+                        <th>Title[cite: 1]</th>
+                        <th>Author[cite: 1]</th>
+                        <th>Category[cite: 1]</th>
+                        <th>Total Qty</th>
+                        <th>Available[cite: 1]</th>
+                        <th>Action[cite: 1]</th>
+                    </tr>
+                </thead>
+                <tbody id="booksTableBody"></tbody>
+            </table>
+        </section>
+
+        <!-- 4. Search Books Section -->
+        <section id="search-books" class="section">
+            <header><h1>Search Books[cite: 1]</h1></header>
+            <div class="search-controls">
+                <select id="searchType">
+                    <option value="title">By Book Title[cite: 1]</option>
+                    <option value="author">By Author Name[cite: 1]</option>
+                    <option value="id">By Book ID[cite: 1]</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Type keyword to search..." onkeyup="searchBooks()">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book ID[cite: 1]</th>
+                        <th>Title[cite: 1]</th>
+                        <th>Author[cite: 1]</th>
+                        <th>Category[cite: 1]</th>
+                        <th>Available Qty</th>
+                    </tr>
+                </thead>
+                <tbody id="searchTableBody"></tbody>
+            </table>
+        </section>
+
+        <!-- 5. Issue Books Section -->
+        <section id="issue-book" class="section">
+            <header><h1>Issue Book to Student</h1></header>
+            <form id="issueBookForm" onsubmit="issueBook(event)">
+                <div class="form-group">
+                    <label>Select Book[cite: 1]</label>
+                    <select id="issueBookSelect" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Student Name[cite: 1]</label>
+                    <input type="text" id="studentName" required placeholder="Enter student's full name">
+                </div>
+                <div class="form-group">
+                    <label>Issue Date[cite: 1]</label>
+                    <input type="date" id="issueDate" required>
+                </div>
+                <button type="submit" class="btn-success">Confirm Issue</button>
+            </form>
+        </section>
+
+        <!-- 6. Return Books Section -->
+        <section id="return-book" class="section">
+            <header><h1>Return Issued Books[cite: 1]</h1></header>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Issue ID</th>
+                        <th>Book Title[cite: 1]</th>
+                        <th>Student Name</th>
+                        <th>Issue Date[cite: 1]</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="issuedBooksTableBody"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
