@@ -1,0 +1,1 @@
+Library management system website to see the availability of different books, add new books to database, issue books to students, return the issued books and search for a particular book by its id or author or its title.
